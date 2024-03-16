@@ -2,8 +2,15 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
+import { Link } from "react-router-dom";
 
 import { Home } from "./pages/home";
+import { Login } from "./pages/login";
+import { Signup } from "./pages/signup";
+import { Profile } from "./pages/profile";
+import { Sheets } from "./pages/sheets";
+import { Canvas } from "./pages/canvas";
+import { Success} from "./pages/success";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -25,7 +32,14 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
+
                         <Route element={<Home />} path="/" />
+                        <Route element={<Login/>} path="/login"/>
+                        <Route element={<Signup/>} path="/signup"/>
+                        <Route element={<Profile/>} path="/profile"/>
+                        <Route element={<Sheets/>} path="/sheets"/>
+                        <Route element={<Canvas/>} path="/canvas"/>
+                        <Route element={<Success/>} path="/success"/>
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
