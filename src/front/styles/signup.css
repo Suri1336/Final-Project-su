@@ -1,8 +1,84 @@
-.signup{
+.signup {
     background-image: linear-gradient(to right bottom, #f9c5e3, #ffc6d6, #ffc9c9, #ffcfbf, #ffd5b8, #fddab8, #fadfb8, #f6e4ba, #f7e9bd, #f7eec0, #f8f3c4, #f8f8c8);
     min-height: 100dvh;
-    
+
+
 }
-#app{
-    background-color: rgb(245, 245, 23);
+
+/* form css starts here*/
+.Application {
+    background-color: transparent;
+    width: 30%;
+    padding-top: 300px;
+    padding-left:550px ;
+
+
+}
+
+/* .login {
+    width: 30%;
+    margin: 20%;
+} */
+
+.inputContainer {
+    position: relative;
+    height: 45px;
+    width: 100%;
+    margin-bottom: 1.75rem;
+}
+
+.input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 300px;
+    border: 1px solid #ffffff;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 0 20px;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+
+::placeholder {
+    color: transparent;
+}
+
+.label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 0 4;
+   
+    color: #ffffff;
+    font-size: 16px;
+    transition: 0.5;
+    z-index: 0;
+}
+
+.input:focus+.label {
+    top: -7px;
+    left: 3px;
+    z-index: 10;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 4px 2px 3px 4px;
+   
+}
+
+.input:focus {
+    border: 2px solid rgb(255, 255, 255);
+}
+
+input:not(:placeholder-shown)+.lable {
+    top: -7px;
+    left: 3px;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 600;
 }
