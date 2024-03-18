@@ -23,7 +23,7 @@ export const Home = () => {
           </div>
         </Link>
 {/*Card 2 */}
-        <Link to={"/canvas"}className="card orange p-5" style={{ width: "18rem" }} >
+        <Link to={"/sheets"}className="card orange p-5" style={{ width: "18rem" }} >
           <div className="card-body p-5">
             <h2 className="card-title text-light">Start Coloring</h2>
           </div>

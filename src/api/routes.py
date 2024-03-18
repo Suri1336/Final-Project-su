@@ -14,10 +14,12 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 import hashlib
 
-api = Blueprint('api', __name__)
+
+
 
 # Allow CORS requests to this API
-CORS(api  )
+api = Blueprint('api', __name__)
+CORS(api)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -40,8 +42,10 @@ def create_token():
 def create_user():
     body=request.get_json()
     email=body['email']
+    UserName=body['UserName']
+    DateOfBirth=body['DateOfBirth']
     password = hashlib.sha256(body['password'].encode("utf-8")).hexdigest()
-    new_user=User(email=email,password=password,is_active=True)
+    new_user=User (email=email,password=password,DateOfBirth=DateOfBirth,UserName=UserName, is_active=True)
     db.session.add(new_user)
     db.session.commit()
     access_token=create_access_token(identity=email)
