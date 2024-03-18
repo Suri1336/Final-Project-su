@@ -1,17 +1,17 @@
-.signup {
+.login {
     background-image: linear-gradient(to right bottom, #f9c5e3, #ffc6d6, #ffc9c9, #ffcfbf, #ffd5b8, #fddab8, #fadfb8, #f6e4ba, #f7e9bd, #f7eec0, #f8f3c4, #f8f8c8);
     min-height: 100dvh;
 
 
 }
-.signuphead{
+.loginhead{
 padding-bottom: 8px;
 }
 
 /* form css starts here*/
 .Application {
     background-color: transparent;
-    padding-top: 250px;
+    padding-top: 300px;
     padding-left:550px ;
 
 
@@ -86,7 +86,7 @@ input:not(:placeholder-shown)+.lable {
 }
 /* button*/
 
-.btnsignup{
+.btnlogin{
     padding: 0px;
     padding-left: 8px;
     padding-right: 8px;

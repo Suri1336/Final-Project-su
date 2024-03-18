@@ -1,10 +1,11 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+from flask_jwt_extended import JWTManager
 import os
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
-from flask_swagger import swagger
+# from flask_swagger import Swagger
 from api.utils import APIException, generate_sitemap
 from api.models import db
 from api.routes import api
@@ -30,7 +31,8 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
-
+app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET")
+jwt = JWTManager(app)
 # add the admin
 setup_admin(app)
 
@@ -39,6 +41,15 @@ setup_commands(app)
 
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(api, url_prefix='/api')
+# @app.route("/")
+# def spec():
+#     swag = Swagger(app)
+#     swag['info']['version'] = "1.0"
+#     swag['info']['title'] = "Your API"
+#     return jsonify(swag)
+
+# if __name__ == "__main__":
+#     app.run()
 
 # Handle/serialize errors like a JSON object
 

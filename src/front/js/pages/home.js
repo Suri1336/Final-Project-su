@@ -16,7 +16,7 @@ export const Home = () => {
       {/* cards for home page start here */}
       <div className="row mt-5 d-flex justify-content-evenly">
 {/*Card 1 */}
-        <Link to={"/sheets"}
+        <Link to={"/login"}
         className="card pink p-5" style={{ width: "18rem" }} >
           <div className="card-body p-5">
             <h2 className="card-title text-light" >Choose A Design</h2>
