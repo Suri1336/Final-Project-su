@@ -13,7 +13,7 @@ export const Signup = () => {
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
     function submitRequest() {
-        actions.addUser(email, password)
+        actions.SignUp(email,UserName,DateOfBirth,password)
     }
 
   return (

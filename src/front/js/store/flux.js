@@ -152,7 +152,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					token:null
 				})
 			},
-			addUser:async(email,password)=>{
+			SignUp:async(email,UserName,DateOfBirth,password)=>{
 				const options={
 					method:"POST",
 					headers:{
@@ -161,12 +161,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body:JSON.stringify(
 						{
 							email:email,
-							password:password
+							password:password,
+							UserName:UserName,
+							DateOfBirth:DateOfBirth
 						}
 					)
 				}
 				try{
-					const response=await fetch(process.env.BACKED_URL+"api/signup",options)
+					const response=await fetch(process.env.BACKEND_URL+"/signup",options)
 					if(response.status!==200){
 						alert("error response code",response.status)
 						return false
