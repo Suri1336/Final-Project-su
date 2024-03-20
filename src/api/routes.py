@@ -5,7 +5,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import hashlib
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Pages
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
@@ -52,12 +52,29 @@ def create_user():
     access_token=create_access_token(identity=email)
     return jsonify(access_token,'user successfully created')
 
+# @api.route('/user',methods=['GET'])
+# def get_all_users():
+#     users=User.query.all()
+#     all_users=list(map())
+
 @api.route('/user',methods=['GET'])
 def get_all_users():
     users=User.query.all()
-    all_users=list(map())
+    all_users=list(map(lambda user: user.serialize(), users))
+    return jsonify(all_users)
 
 @api.route('/private',methods=['GET'])
 @jwt_required()
 def get_private():
     return jsonify ({'msg':'this is a private end point you need to be logged in to see it'}),200
+
+@api.route('/pages',methods=['GET'])
+def get_all_pages():
+    pages=Pages.query.all()
+    all_pages=list(map(lambda page: page.serialize(), pages))
+    return jsonify(all_pages)
+
+@api.route('/pages/<int:id>',methods=['GET'])
+def get_each_pages(id):
+    page=Pages.query.filter_by(id = id)
+    return jsonify(page.serialize())

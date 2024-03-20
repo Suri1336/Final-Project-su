@@ -20,3 +20,34 @@ class User(db.Model):
             "UserName": self.UserName
             # do not serialize the password, its a security breach
         }
+    
+class Pages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    pageLink = db.Column(db.String(3120), unique=True, nullable=False)
+    name = db.Column(db.String(80), unique=False, nullable=False)
+    category = db.Column(db.String(80), unique=False, nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "pageLink": self.pageLink,
+            "name": self.name,
+            "category": self.category
+        }
+
+
+
+
+
+    # class Pages(db.Model):
+    #   id = db.Column(db.Integer, primary_key=True)
+    # pageLink = db.Column(db.String(3120), unique=True, nullable=False)
+    # name = db.Column(db.String(80), unique=False, nullable=False)
+    # category = db.Column(db.String(80), unique=False, nullable=False)
+
+    # def serialize(self):
+    #     return {
+    #         "id": self.id,
+    #         "pageLink": self.pageLink,
+    #         "name": self.name
+    #     }
