@@ -104,11 +104,11 @@ def setup_commands(app):
                 category=page['category']
             )
         db.session.add(new_page),
-    db.session.commit()
+        db.session.commit()
 
 
 
-#             commands.py
+# commands.py
 # run pipenv shell
 # pipenv install flask 
 # flask populate-page
