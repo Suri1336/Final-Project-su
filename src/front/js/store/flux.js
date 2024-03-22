@@ -114,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({token:token})
 				}
 			},
-			login:async(email,password)=>{
+			login:async(UserName,password)=>{
 				const options={
 					method:"POST",
 					headers:{
@@ -122,7 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body:JSON.stringify(
 						{
-							email:email,
+							UserName:UserName,
 							password:password
 						}
 					)
