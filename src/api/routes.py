@@ -34,9 +34,9 @@ def handle_hello():
 
 @api.route('/token',methods=['POST'])
 def create_token():
-    email=request.json.get('email',None)
+    UserName=request.json.get('UserName',None)
     password=request.json.get('password',None)
-    access_token=create_access_token(identity=email)
+    access_token=create_access_token(identity=UserName)
     return jsonify(access_token=access_token)
 
 @api.route('/signup',methods=['POST'])

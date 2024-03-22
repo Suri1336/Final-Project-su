@@ -95,11 +95,6 @@ def setup_commands(app):
                 "pic_url": "https://i.imgur.com/SmhGAwI.png",
                 "category": "Kids"
             },
-              {
-                "name": "CUPCAKE",
-                "pic_url": "https://i.pinimg.com/474x/6e/e1/6d/6ee16d6a5662caaeddbddd9daad8021d.jpg",
-                "category": "Kids"
-            }
             
         ]
         for page in page_list:

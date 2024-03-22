@@ -128,7 +128,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					)
 				}
 				try{
-					const response=await fetch(process.env.BACKEND_URL+"/api/token",options)
+					const response=await fetch(process.env.BACKEND_URL+"/token",options)
 					if (response.status!==200){
 						alert("Error response code", response.status)
 						return false;
