@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/home.css";
+import {ColoringPage}from "../component/coloringPage.js";
 
 export const Canvas = () => {
   const {id} = useParams()
@@ -10,7 +11,7 @@ export const Canvas = () => {
 
   useEffect(() => {
     async function getSheet() {
-      let response = await fetch(process.env.BACKEND_URL + "/sheets/" + id)
+      let response = await fetch(process.env.BACKEND_URL + "/pages/" + id)
       let data = await response.json()
       setSheet(data)
       console.log(sheet)
@@ -20,6 +21,7 @@ export const Canvas = () => {
 
   return (
     <div>
+      <ColoringPage/>
         <div> {sheet.name} </div>
         <img src={sheet.pageLink} />
     </div>
