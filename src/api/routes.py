@@ -76,5 +76,8 @@ def get_all_pages():
 
 @api.route('/pages/<int:id>',methods=['GET'])
 def get_each_pages(id):
-    page=Pages.query.filter_by(id = id)
-    return jsonify(page.serialize())
+    page=Pages.query.filter_by(id = id).first()
+    if page:
+        return jsonify(page.serialize())
+    else:
+        return jsonify({"message": "Page not found"}), 404

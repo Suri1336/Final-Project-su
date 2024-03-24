@@ -1,116 +1,77 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-export const ColoringPage = () => {
-    const [currentColor, setCurrentColor] = useState('#ff0000');
-    const [isDrawing, setIsDrawing] = useState(false);
-    const [history, setHistory] = useState([]);
-    const [historyIndex, setHistoryIndex] = useState(-1);
-    const coloringPageRef = useRef(null);
+export const ColoringPage = (props) => {
+  const canvasRef = useRef(null);
+  const [chosenColor, setChosenColor] = useState('#FFFFFF');
+  const colors = ['#1d561c', '#699b68', '#61ce73', '#afe89a', '#e9edb2', '#efe77b', '#f4d24f', '#bc9d71', '#08316d', '#265a8b', '#5da4ba', '#7ad0d3', '#e7b6af', '#faca9a', '#fe8d7d', '#9b6959', '#552056', '#874a9e', '#b595e5', '#b33a6d', '#e2649e', '#ec8a8e', '#fd6d4a', '#7c373f'];
+  const fillSpeed = 0.15;
 
-    const undo = () => {
-        if (historyIndex > 0) {
-            setHistoryIndex(historyIndex - 1);
-        }
+  useEffect(() => {
+    console.clear();
+    console.log('svgColor');
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+
+    function drawCanvas() {
+      ctx.fillStyle = chosenColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Redraw canvas when chosenColor changes
+    drawCanvas();
+
+    // Attach event listeners
+    function swatchClick(color) {
+      setChosenColor(color);
+    }
+
+    document.getElementById('btnRandom').addEventListener('click', drawRandom);
+    document.getElementById('btnClear').addEventListener('click', clearCanvas);
+    document.querySelectorAll('.swatch').forEach((swatch) => {
+      swatch.addEventListener('click', () => swatchClick(swatch.dataset.color));
+    });
+
+    return () => {
+      // Cleanup: Remove event listeners
+      document.getElementById('btnRandom').removeEventListener('click', drawRandom);
+      document.getElementById('btnClear').removeEventListener('click', clearCanvas);
+      document.querySelectorAll('.swatch').forEach((swatch) => {
+        swatch.removeEventListener('click', () => swatchClick(swatch.dataset.color));
+      });
     };
+  }, [chosenColor]);
 
-    const redo = () => {
-        if (historyIndex < history.length - 1) {
-            setHistoryIndex(historyIndex + 1);
-        }
-    };
-    useEffect(() => {
-        const canvas = coloringPageRef.current;
-        const ctx = canvas.getContext('2d');
+  function drawRandom() {
+    const randomNum = Math.floor(Math.random() * colors.length);
+    setChosenColor(colors[randomNum]);
+  }
 
-        const saveState = () => {
-            setHistory(prevHistory => {
-                const newHistory = prevHistory.slice(0, historyIndex + 1);
-                newHistory.push(canvas.toDataURL());
-                setHistoryIndex(newHistory.length - 1);
-                return newHistory;
-            });
-        };
+  function clearCanvas() {
+    setChosenColor('#FFFFFF');
+  }
 
-        const draw = (x, y) => {
-            if (!isDrawing) return;
-            ctx.fillStyle = currentColor;
-            ctx.beginPath();
-            ctx.arc(x, y, 5, 0, 2 * Math.PI);
-            ctx.fill();
-        };
+  return (
+    <div className="holder">
+      <div className="Title">Interactive Coloring Page</div>
 
-        const handleMouseDown = (e) => {
-            setIsDrawing(true);
-            draw(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
-        };
+      <div className="image-container">
+        <canvas ref={canvasRef} width={800} height={600}></canvas>
+        <img height="300px" width="300px" src={props.img} alt="Coloring Page" />
+      </div>
 
-        const handleMouseMove = (e) => {
-            draw(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
-        };
+      <div className="held">
+        <button id="btnRandom" className="button">Random Color</button>
+        <button id="btnClear" className="button">Clear Color</button>
+      </div>
 
-        const handleMouseUp = () => {
-            setIsDrawing(false);
-            saveState();
-        };
-
-        canvas.addEventListener('mousedown', handleMouseDown);
-        canvas.addEventListener('mousemove', handleMouseMove);
-        canvas.addEventListener('mouseup', handleMouseUp);
-
-        return () => {
-            canvas.removeEventListener('mousedown', handleMouseDown);
-            canvas.removeEventListener('mousemove', handleMouseMove);
-            canvas.removeEventListener('mouseup', handleMouseUp);
-        };
-    }, [currentColor, isDrawing, history, historyIndex]);
-
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            const img = new Image();
-            img.onload = () => {
-                const canvas = coloringPageRef.current;
-                canvas.width = img.width;
-                canvas.height = img.height;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0);
-                setHistory([canvas.toDataURL()]);
-                setHistoryIndex(0);
-            };
-            img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-    };
-
-    const saveImage = () => {
-        const canvas = coloringPageRef.current;
-        const link = document.createElement('a');
-        link.download = 'coloring_image.png';
-        link.href = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
-        link.click();
-    };
-
-    return (
-        <div>
-            <h1>Coloring Page Website</h1>
-
-            <input type="file" accept="image/*" onChange={handleFileChange} />
-            <div id="colorPicker">
-                <div style={{ backgroundColor: '#ff0000' }} onClick={() => setCurrentColor('#ff0000')}></div>
-                <div style={{ backgroundColor: '#00ff00' }} onClick={() => setCurrentColor('#00ff00')}></div>
-                <div style={{ backgroundColor: '#0000ff' }} onClick={() => setCurrentColor('#0000ff')}></div>
-                <div style={{ backgroundColor: '#ffff00' }} onClick={() => setCurrentColor('#ffff00')}></div>
-                <div style={{ backgroundColor: '#ff00ff' }} onClick={() => setCurrentColor('#ff00ff')}></div>
-                <input type="color" id="colorPickerInput" onChange={(e) => setCurrentColor(e.target.value)} />
-            </div>
-
-            <canvas ref={coloringPageRef} id="coloringPage" style={{ border: '1px solid #000' }}></canvas>
-
-            <button onClick={saveImage}>Save Image</button>
-            <button onClick={undo}>Undo</button>
-            <button onClick={redo}>Redo</button>
-        </div>
-    );
+      <ul className="swatchHolder w-25">
+        <li className="colorHolder" style={{ backgroundColor: chosenColor }}>Color Palette</li>
+        {colors.map((color, index) => (
+          <li key={index} className="swatch" style={{ backgroundColor: color }} data-color={color}></li>
+        ))}
+      </ul>
+    </div>
+  );
 };
+
+
