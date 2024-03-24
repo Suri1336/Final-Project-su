@@ -91,20 +91,32 @@ def setup_commands(app):
     def generate_page_list():
         page_list = [
             {
-                "name": "Dude, Where's my Closet?",
-                "pic_url": "https://i.imgur.com/SmhGAwI.png",
-                "category": "Kids"
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/KtxRvqM.png",
             },
+            {
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/hCVck6X.jpeg",
+            },
+            {
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/yit4LeH.jpeg",
+            },
+            {
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/YYaLXAR.jpeg",
+            },
+            {
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/32fiORN.jpeg",
+            },
+          
             
         ]
         for page in page_list:
-          new_page = Pages(
-                name=page['name'],
-                pageLink=page['pic_url'],
-                category=page['category']
-            )
-        db.session.add(new_page),
-        db.session.commit()
+          new_page = Pages( name=page['name'], pageLink=page['pic_url'])
+          db.session.add(new_page)
+          db.session.commit()
 
 
 
