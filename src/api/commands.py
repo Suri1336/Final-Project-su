@@ -108,8 +108,8 @@ def setup_commands(app):
             },
             {
                 "name": "Lets Color",
-                "pic_url": "https://i.imgur.com/32fiORN.jpeg",
-            },
+                "pic_url": "https://i.imgur.com/32fiORN.jpeg"
+            }
           
             
         ]

@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-// import useParams 
+import { useParams } from "react-router-dom";
 import "../../styles/home.css";
 
 export const Canvas = () => {
@@ -12,8 +12,10 @@ export const Canvas = () => {
     async function getSheet() {
       let response = await fetch(process.env.BACKEND_URL + "/sheets/" + id)
       let data = await response.json()
-      // THIS DATA WILL BE YOUR INDIVIDUAL SHEET
+      setSheet(data)
+      console.log(sheet)
     }
+    getSheet()
   }, [])
 
   return (

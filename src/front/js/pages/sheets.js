@@ -23,7 +23,7 @@ export const Sheets = () => {
       <div className="sheetCards row row-cols-4 row-cols-lg-5 g-2 g-lg-3 align-items-start">
         {sheets?.map((sheet, index) => (
           <div key={index} className="card cardSheets col">
-            <img src={sheet.pageLink} className="card-img-top" alt="hi" />
+            <img src={sheet.pageLink} className="card-img-top" height=" 200px" width="150px"alt="hi" />
             <div className="card-body">
               <Link to={"/canvas/" + sheet.id}>lets color</Link>
             </div>
