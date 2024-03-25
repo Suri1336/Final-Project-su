@@ -8,13 +8,12 @@ export const Canvas = () => {
   const { id } = useParams()
   const { store, actions } = useContext(Context);
   const [sheet, setSheet] = useState({})
-
+  let page;
   useEffect(() => {
     async function getSheet() {
       let response = await fetch(process.env.BACKEND_URL + "/pages/" + id)
       let data = await response.json()
       setSheet(data)
-      page = data.pageLink.toDataURL()
     }
     getSheet()
   }, [])

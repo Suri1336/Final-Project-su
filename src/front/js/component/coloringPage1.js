@@ -66,17 +66,20 @@ export const ColoringPage1 = (props) => {
         };
     }, [currentColor, isDrawing, history, historyIndex]);
 
-    const img = new Image();
-    img.src = props.img;
-    img.onload = () => {
-        const canvas = coloringPageRef.current;
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-        setHistory([ctx.getImageData(0, 0, canvas.width, canvas.height)]);
-        setHistoryIndex(0);
-    };
+    useEffect(() => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = props.img;
+        img.onload = () => {
+            const canvas = coloringPageRef.current;
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            setHistory([ctx.getImageData(0, 0, canvas.width, canvas.height)]);
+            setHistoryIndex(0);
+        };
+    }, [props.img]);
 
     const saveImage = () => {
         const canvas = coloringPageRef.current;
@@ -87,7 +90,7 @@ export const ColoringPage1 = (props) => {
     };
 
     return (
-        <div>
+        <div style={{ position: 'relative' }}>
             <h1>Coloring Page Website</h1>
 
             <div id="colorPicker">
@@ -99,7 +102,7 @@ export const ColoringPage1 = (props) => {
                 <input type="color" id="colorPickerInput" onChange={(e) => setCurrentColor(e.target.value)} />
             </div>
 
-            <canvas ref={coloringPageRef} id="coloringPage" style={{ border: '1px solid #000' }}></canvas>
+            <canvas ref={coloringPageRef} id="coloringPage" style={{ position: 'absolute', top: 0, left: 0, border: '1px solid #000' }}></canvas>
 
             <button onClick={saveImage}>Save Image</button>
             <button onClick={undo}>Undo</button>
