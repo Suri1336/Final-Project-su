@@ -15,7 +15,7 @@ export const Login = () => {
     actions.login(UserName, password)
   };
   if (store.token && store.token !== "" && store.token !== undefined) {
-    navigate("/sheets")
+    navigate("/profile")
   }
   {/*rendering/html for login starts here */ }
   return (

@@ -73,7 +73,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			user: null,
+			userName: null,
+			randomUser: []
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -84,7 +88,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
-
 				//we have to loop the entire demo array to look for the respective index
 				//and change its color
 				const demo = store.demo.map((elm, i) => {
@@ -95,6 +98,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			getMessage: async () => {
+				const store = getStore()
+				const options = {
+					headers: {
+						"Authorization": "Bearer " + store.token
+					},
+				}
+				try {
+					// fetching data from the backend
+					const resp = await fetch(process.env.BACKEND_URL + "/api/hello", options)
+					const data = await resp.json()
+					setStore({ message: data.message })
+					// don't forget to return something, that is how the async resolves
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+				}
 			},
 			syncSessionToken: () => {
 				const token = sessionStorage.getItem('token');
@@ -125,7 +146,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("access token", data);
 					sessionStorage.setItem("token", data.access_token);
 					setStore({
-						token: data.access_token
+						token: data.access_token,
+						userName: data.user
+
 					})
 					return true;
 				}
@@ -140,6 +163,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					token: null
 				})
 			},
+			getUsers: async () => {
+				let response = await fetch(process.env.BACKEND_URL + "/api/user")
+				let data = await response.json()
+				for (let user in data) {
+					if (user.UserName == getStore().userName) { setStore({ user: user }) }
+				}
+			},
+
 			SignUp: async (email, UserName, DateOfBirth, password) => {
 				const options = {
 					method: "POST",
@@ -167,8 +198,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				catch (error) { console.log("login error") }
 
+			},
+			fetchRandomUser:()=>{
+			fetch("https://randomuser.me/api/")
+			.then(response =>{
+				if(!response.ok)throw Error(respond.statusText)
+				return response.json()
+			})
+			.then(data=>{
+				setStore({randomUser:data.results})
+			})
+			.catch(error=>console.log("there was an error fetching randon person ",error))
 			}
 		}
+
 	};
 };
 

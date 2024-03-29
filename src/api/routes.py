@@ -24,13 +24,14 @@ CORS(api)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
+@jwt_required()
 def handle_hello():
 
-    response_body = {
+    msg = {
         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
     }
-
-    return jsonify(response_body), 200
+    current_user=get_jwt_identity()
+    return jsonify(loged_in_as = current_user), 200
 
 @api.route('/token',methods=['POST'])
 def create_token():
