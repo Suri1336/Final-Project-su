@@ -4,10 +4,12 @@ import "../../styles/profile.css";
 
 export const Profile = () => {
   const { store, actions } = useContext(Context);
+  const firstname = store.randomUser[0]?.name.first
   useEffect(() => {
-    actions.getUsers()
-    console.log(store.user)
+    actions.fetchRandomUser()
   }, [])
+  console.log(store.randomUser[0])
+console.log(firstname)
   return (
     <div className="profileMain">
       <div className="container pt-5">
@@ -21,7 +23,7 @@ export const Profile = () => {
         <div className="row mt-5 align-item-center justify-content-between">
           <div className="profile col-4 m-5 p-3">
             <div>Name:</div>
-            <div>{store.randomUser.name}</div>
+            <div>{store.randomUser[0]?.name.first}</div>
             <div>Date Of Birth</div>
             <div>Color streak</div></div>
           <div className="profile col-6 m-5 p-3">wish to do later</div>

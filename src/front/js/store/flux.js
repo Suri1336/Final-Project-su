@@ -205,10 +205,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if(!response.ok)throw Error(respond.statusText)
 				return response.json()
 			})
+		
 			.then(data=>{
+				console.log(data)
 				setStore({randomUser:data.results})
 			})
-			.catch(error=>console.log("there was an error fetching randon person ",error))
+			.catch(error=>console.log("there was an error fetching random person ",error))
 			}
 		}
 
