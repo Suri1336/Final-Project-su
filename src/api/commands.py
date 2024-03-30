@@ -55,9 +55,35 @@ def setup_commands(app):
             {
                 "name": "Lets Color",
                 "pic_url": "https://i.imgur.com/32fiORN.jpeg"
+            },
+            {
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/q5xzxIU.png"
+            },
+             {
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/mEgql1X.jpg"
+            },
+           {
+                "name": "Lets Color",
+                "pic_url": "https://images.template.net/73273/Free-Easy-Heart-Coloring-Page-for-Kids-1.jpg"
+            } ,
+           {
+                "name": "Lets Color",
+                "pic_url": "https://images.template.net/74823/Free-Easy-Unicorn-Coloring-Page-US-1.jpg"
+            },
+             {
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/06Kq6yg.png"
+            },
+              {
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/F9eeun3.png"
+            },
+               {
+                "name": "Lets Color",
+                "pic_url": "https://i.imgur.com/Zla7XRN.png"
             }
-          
-            
         ]
         for page in page_list:
           new_page = Pages( name=page['name'], pageLink=page['pic_url'])
