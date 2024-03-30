@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
-	const {store,actions}=useContext(Context)
+	const { store, actions } = useContext(Context)
 	return (
 
 		<nav className="navbar navbar-expand-lg bg-body-tertiary purple ">
@@ -33,11 +33,11 @@ export const Navbar = () => {
 						</li>
 						<li className="nav-item">
 							{!store.token ?
-							<Link to="/login">Login</Link>
-							:
-							<Link to="/" onClick={()=>actions.logout()}>Log Out</Link>
+								<Link to="/login">Login</Link>
+								:
+								<Link to="/" onClick={() => actions.logout()}>Log Out</Link>
 
-						    }
+							}
 						</li>
 					</ul>
 					<form className="d-flex" role="search">

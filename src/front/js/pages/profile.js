@@ -9,14 +9,14 @@ export const Profile = () => {
     actions.fetchRandomUser()
   }, [])
   console.log(store.randomUser[0])
-console.log(firstname)
+  console.log(firstname)
   return (
     <div className="profileMain">
       <div className="container pt-5">
         <div className="row mt-5 align-item-center justify-content-between">
 
           <img src="https://xsgames.co/randomusers/avatar.php?g=female" className="rounded-circle col-4 m-3 p-2" alt="pic" />
-          
+
           <div className="profile col-6 m-5 p-3">what you have colord
           </div>
         </div>

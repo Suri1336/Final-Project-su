@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/home.css";
-import {ColoringPage1} from "../component/coloringPage1.js";
+import { ColoringPage1 } from "../component/coloringPage1.js";
 
 export const Canvas = () => {
   const { id } = useParams()
@@ -20,7 +20,7 @@ export const Canvas = () => {
 
   return (
     <div>
-      <ColoringPage1 img={sheet.pageLink}/>
+      <ColoringPage1 img={sheet.pageLink} />
       <div> {sheet.name} </div>
     </div>
   )

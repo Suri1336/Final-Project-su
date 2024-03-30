@@ -1,8 +1,9 @@
 .gradient {
     background-image: linear-gradient(to right bottom, #f9c5e3, #ffc6d6, #ffc9c9, #ffcfbf, #ffd5b8, #fddab8, #fadfb8, #f6e4ba, #f7e9bd, #f7eec0, #f8f3c4, #f8f8c8);
-   
+
 }
-.jumbotron{
+
+.jumbotron {
     height: 400px;
 }
 
@@ -19,14 +20,15 @@
 }
 
 .purple {
-    background-color:#e6cbff;
+    background-color: #e6cbff;
 }
-.navbar{
-   background-color: #fddab8;
-   position: fixed;
-   top: 0; 
-   width: 100%;
- 
+
+.navbar {
+    background-color: #fddab8;
+    position: fixed;
+    top: 0;
+    width: 100%;
+
 }
 
 /* maybe background color change 
@@ -36,7 +38,8 @@
 #app {
     background-color: #f4f4f4;
 }
+
 /*footer */
-.footer{
-    background-color:#f7e9bd ;
+.footer {
+    background-color: #f7e9bd;
 }

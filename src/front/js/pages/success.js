@@ -6,6 +6,7 @@ export const Success = () => {
   const { store, actions } = useContext(Context);
   return (
     <div>
-        <div> this is the YAY! page </div>
+      <div> this is the YAY! page </div>
     </div>
-  )}
+  )
+}
