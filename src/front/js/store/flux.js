@@ -120,10 +120,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify(
 						{
-							email: email,
-							password: password,
 							UserName: UserName,
-							DateOfBirth: DateOfBirth
+							email: email,
+							DateOfBirth: DateOfBirth,
+							password: password
 						}
 					)
 				}

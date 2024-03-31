@@ -43,8 +43,8 @@ def create_token():
 @api.route('/signup',methods=['POST'])
 def create_user():
     body=request.get_json()
-    email=body['email']
     UserName=body['UserName']
+    email=body['email']
     DateOfBirth=body['DateOfBirth']
     password = hashlib.sha256(body['password'].encode("utf-8")).hexdigest()
     new_user=User (email=email,password=password,DateOfBirth=DateOfBirth,UserName=UserName, is_active=True)

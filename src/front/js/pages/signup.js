@@ -23,7 +23,7 @@ export const Signup = () => {
         <form className="Application">
           <h1 className="signuphead">Sign Up </h1>
           <div className="inputContainer">
-            <input type="text" name="Username" placeholder="Username" className="input" onChange={e => setUserName(e.target.value)} value={UserName} />
+            <input type="text" name="Username" placeholder="Username" className="input" onChange={(e) => setUserName(e.target.value)} value={UserName} />
             <label className="label">Username</label>
           </div>
           <div className="inputContainer">
