@@ -93,6 +93,6 @@ def setup_commands(app):
 
 
 # commands.py
-# run pipenv shell
+# run
 # pipenv install flask 
 # flask populate-page
