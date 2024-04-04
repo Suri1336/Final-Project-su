@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/profile.css";
-
+import { Link } from "react-router-dom";
 export const Profile = () => {
   const { store, actions } = useContext(Context);
   const firstname = store.randomUser[0]?.name.first
@@ -16,7 +16,7 @@ export const Profile = () => {
         <div className="row mt-5 align-item-center justify-content-between">
 
           <img src="https://xsgames.co/randomusers/avatar.php?g=female" className="rounded-circle col-4 m-3 p-2" alt="pic" />
-
+          <Link to="/sheets" className="purple btn mt-3 mb-5 text-light">Lets Color</Link>
           <div className="profile col-6 m-5 p-3">what you have colord
           </div>
         </div>
