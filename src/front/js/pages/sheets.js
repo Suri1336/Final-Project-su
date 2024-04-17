@@ -17,6 +17,13 @@ export const Sheets = () => {
     getSheets()
   }, [])
 
+  const handleFav = (pageLink) => {
+    if (store.fav.includes(pageLink)) {
+      actions.deleteFav(pageLink)
+    }
+    else { actions.addFav(pageLink) }
+  }
+
   return (
     <div className="Sheets">
       <h1 className="row justify-content-center" style={{ textAlign: "center" }}>Choose A Canvas</h1>
@@ -26,6 +33,12 @@ export const Sheets = () => {
             <img src={sheet.pageLink} className="card-img-top" height=" 200px" width="150px" alt="hi" />
             <div className="card-body">
               <Link to={"/canvas/" + sheet.id}>lets color</Link>
+              <button onClick={() => {
+                actions.addFav(sheet.pageLink);
+
+              }}>
+                {store.fav.includes(sheet.pageLink) ? "🤍" : "♡"}
+              </button>
             </div>
           </div>
         ))}

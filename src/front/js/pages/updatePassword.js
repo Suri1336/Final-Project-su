@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useSearchParams } from "react-router-dom";
-import "../../styles/login.css";
 
 {/*authentication for login starts here */ }
 export const UpdatePassword = () => {
     const { store, actions } = useContext(Context);
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState("");
+    const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
 
     let token = searchParams.get("token")
@@ -25,7 +25,7 @@ export const UpdatePassword = () => {
             <div className="text-white rounded">
                 {/* form starts here do css in login */}
                 <form className="Application" method="POST">
-                    <h1 className="loginhead">Login </h1>
+                    <h1 className="loginhead">Update Password </h1>
                     <div className="inputContainer">
                         <input type="text" name="Password" placeholder="Password" className="input" onChange={e => setPassword(e.target.value)} value={password} />
                         <label className="label">Password</label>

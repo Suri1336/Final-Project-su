@@ -25,7 +25,14 @@ export const Profile = () => {
             <div>{store.randomUser[0]?.name.first}</div>
             <div>Date Of Birth</div>
             <div>Color streak</div></div>
-          <div className="profile col-6 m-4 p-3">wish to do later</div>
+          <div className="profile col-6 m-4 p-3">wish to do later
+            <div>
+            {store.fav?.map((x,index)=>(
+						<li key={index} onClick={()=>{actions.deleteFav(x)}}><a className="dropdown-item" href="#">{x}</a>x</li>
+            ))}
+              
+            </div>
+            </div>
           <Link to="/sheets" className="purple btn text-light profilebtn">Lets Color</Link>
         </div>
       </div>

@@ -18,8 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: null,
 			userName: null,
 			randomUser: [],
-			favorites: [],
-
+			fav: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -169,18 +168,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const data = await res.json();
 			},
-			addFavorite: (page) => {
-				if (sessionStorage.getItem("token")) {
-					const token = sessionStorage.getItem('token');
-					const opts = {
-						headers: {
-							Authorization: "Bearer " + token,
-							'Content-Type': 'application/json'
-						},
-						method: "POST",
-						body: JSON.stringify({ page: page }),
-					};
-					// setStore({ favorites: ...getStore.favorites(), page });
+
+
+			
+			addFav:(item)=>{
+				setStore({fav:[...getStore().fav,item]})
+
+			},
+			deleteFav:(item)=>{
+				setStore({fav:getStore().fav.filter((x)=>{return x!=item})})
+			},
+
+
+
+
+
+
+			// addFavorite: (page) => {
+				// look at starwar favorites functionaility
+				// page will equal the src="" value and you can pass that into a new img tag to repopulate
+				// if (sessionStorage.getItem("token")) {
+					// const token = sessionStorage.getItem('token');
+					// const opts = {
+					// 	headers: {
+					// 		Authorization: "Bearer " + token,
+					// 		'Content-Type': 'application/json'
+					// 	},
+					// 	method: "POST",
+					// 	body: JSON.stringify({ page: page }),
+					// };
 					// use if you make favorites in the back end
 					// fetch(process.env.BACKEND_URL + "/api/favorites", opts)
 					// 	.then((response) => response.json())
@@ -191,42 +207,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// 		}
 					// 	})
 					// 	.catch((error) => { console.log(error); });
-				}
-			},
-			removeFavorite: (page) => {
-				if (sessionStorage.getItem("token")) {
-					const token = sessionStorage.getItem('token');
-					const opts = {
-						headers: {
-							Authorization: "Bearer " + token,
-							'Content-Type': 'application/json'
-						},
-						method: "DELETE",
-						body: JSON.stringify({ page: page }),
-					};
+				// }
+			// },
+			// removeFavorite: (page) => {
+			// 	if (sessionStorage.getItem("token")) {
+					// const token = sessionStorage.getItem('token');
+					// const opts = {
+					// 	headers: {
+					// 		Authorization: "Bearer " + token,
+					// 		'Content-Type': 'application/json'
+					// 	},
+					// 	method: "DELETE",
+					// 	body: JSON.stringify({ page: page }),
+					// };
 					// use if you make favorites in the back end
 					// fetch(process.env.BACKEND_URL + "/api/deletefav", opts)
 					// 	.then((response) => response.json())
 					// 	.then((data) => {
-					// 		if (data.msg == "ok") {
-					// 			f.forEach((el, i) => {
-					// 				if (el.id === item.id && el.sims_card === item.sims_card) {
-					// 					f.splice(i, 1);
-					// 				}
-					// 			});
-					// 			setStore({ favorites: f });
 					// 		}
 					// 	})
 					// 	.catch((error) => { console.log(error); });
-
-					// getStore().favorites.forEach((fav, i) => {
-					// 	if (fav === page) {
-					// 		fav.splice(i, 1);
-					// 	}
-					// });
-					// setStore({ favorites: f });
-				}
-			},
+				// }
+			// },
 			updatePassword: async (token, password) => {
 				console.log(token, password);
 				const opts = {
