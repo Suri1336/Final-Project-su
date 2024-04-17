@@ -16,17 +16,17 @@ export const Profile = () => {
         <div className="row mt-5 align-item-center justify-content-between">
 
           <img src="https://xsgames.co/randomusers/avatar.php?g=female" className="rounded-circle col-4 m-3 p-2" alt="pic" />
-          <Link to="/sheets" className="purple btn mt-3 mb-5 text-light">Lets Color</Link>
-          <div className="profile col-6 m-5 p-3">what you have colord
+          <div className="profile col-6 m-4 p-3">what you have colord
           </div>
         </div>
         <div className="row mt-5 align-item-center justify-content-between">
-          <div className="profile col-4 m-5 p-3">
+          <div className="profile col-4 m-4 p-3">
             <div>Name:</div>
             <div>{store.randomUser[0]?.name.first}</div>
             <div>Date Of Birth</div>
             <div>Color streak</div></div>
-          <div className="profile col-6 m-5 p-3">wish to do later</div>
+          <div className="profile col-6 m-4 p-3">wish to do later</div>
+          <Link to="/sheets" className="purple btn text-light profilebtn">Lets Color</Link>
         </div>
       </div>
     </div>

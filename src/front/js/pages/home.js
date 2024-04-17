@@ -7,11 +7,11 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container text-center ">
+    <div className="container text-center gradient ">
       {/* jumbotron for home page start here */}
       <div className=" p-5  gradient text-white rounded">
         <h1 className="Welcome pt-5"> Welcome To Color Me</h1>
-        <Link  to="/signup" className="purple btn mt-3 mb-5 text-light">Start Here</Link>
+        <Link  to="/signup" className="purple btn mt-3 mb-5 text-light starthere">Start Here</Link>
       </div>
       {/* cards for home page start here
       <div className="row mt-5 d-flex justify-content-evenly">

@@ -224,7 +224,7 @@ export const ColoringPage1 = (props) => {
                 <div style={{ backgroundColor: '#FF00FF' }} onClick={() => setCurrentColor('#FF00FF')}></div>
                 <input type="color" id="colorPickerInput" onChange={(e) => setCurrentColor(e.target.value)} />
             </div>
-            <canvas ref={coloringPageRef} id="coloringPage" style={{ position: 'absolute', top: "50px", left: "250px", border: '1px solid #000',  maxHeight: "2000px"}}></canvas>
+            <canvas ref={coloringPageRef} id="coloringPage" style={{ position: 'absolute', top: "50px", left: "250px", border: '1px solid #000',  maxHeight: "1000px"}}></canvas>
             <div>
                 <button onClick={saveImage}>Save Image</button>
                 <button onClick={undo}>Undo</button>

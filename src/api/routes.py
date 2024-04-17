@@ -13,7 +13,9 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 import hashlib
-
+from datetime import datetime, timedelta
+import requests
+import os
 
 
 
@@ -82,3 +84,39 @@ def get_each_pages(id):
         return jsonify(page.serialize())
     else:
         return jsonify({"message": "Page not found"}), 404
+
+@api.route('/forgot-password', methods=['POST'])
+def forget_PassWord():
+    body=request.get_json()
+    email=body.get('email')
+    user=User.query.filter_by(email=email).first()
+    if user is None:
+        return jsonify({"msg":"user not found1"}),400
+    
+
+    if user is not None:
+        exporation=timedelta(days=1)
+        access_token=create_access_token(identity=user.id,expires_delta=exporation)
+        email=user.email
+        message="lets change your password "+os.getenv("FrontendUrl")+"/updatePassword?token="+str(access_token)
+        
+        response=requests.post( 
+            # mailgun apionline 105
+            "https://api.mailgun.net/v3/sandbox5cbc02e2ede14a439f04fe021fbaed88.mailgun.org/messages",
+            auth=("api",os.getenv("mailgunApiKey")),
+            data={"from":"Mailgun Sandbox <postmaster@sandbox5cbc02e2ede14a439f04fe021fbaed88.mailgun.org>", "to":email,"subject":"password recovery","text":message}
+        )
+
+        return jsonify("recovery successful")
+
+@api.route("/updatePassword", methods=["POST"])
+@jwt_required()
+def updatePassword():
+    body=request.get_json()
+    password=body.get("password")
+    id=get_jwt_identity()
+    user=User.query.filter_by(id=id).first()
+    if user is not None: 
+        user.password=password
+        db.session.commit()
+        return jsonify("Password successfully Changed")

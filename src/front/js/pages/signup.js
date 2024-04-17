@@ -14,7 +14,7 @@ export const Signup = () => {
   const navigate = useNavigate();
   function submitRequest() {
     actions.SignUp(email, UserName, DateOfBirth, password)
-    actions = navigate ("/login")
+    actions = navigate("/login")
   }
 
   return (
@@ -47,5 +47,6 @@ export const Signup = () => {
 
       </div>
     </div>
+
   )
 }

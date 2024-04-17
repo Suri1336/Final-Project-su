@@ -10,3 +10,10 @@
     border: white;
     border-radius: 12.5px;
 }
+.profilebtn{
+    width: fit-content;
+    display: flex;
+    justify-content:space-around;
+    margin-left:1200px;
+  
+}

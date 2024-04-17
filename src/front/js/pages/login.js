@@ -25,8 +25,9 @@ export const Login = () => {
         <form className="Application" method="POST">
           <h1 className="loginhead">Login </h1>
           <div className="inputContainer">
-            <input type="text" name="Username" placeholder="Username" className="input" onChange={e => setUserName(e.target.value)} value={UserName} />
-            <label className="label">Username</label>
+              <input type="text" name="Username" placeholder="Username" className="input" onChange={e => setUserName(e.target.value)} value={UserName} />
+           
+            <label className="label">Username </label>
           </div>
           <div className="inputContainer">
             <input type="text" name="Password" placeholder="Password" className="input" onChange={e => setPassword(e.target.value)} value={password} />
@@ -34,6 +35,7 @@ export const Login = () => {
           </div>
           <div className="Parentbtn">
             <input type="submit" name="submit" value="login" className="btnlogin btn bg-white text-dark" onClick={handleLogin} />
+            <Link to={"/forgotpassword"}>Forgot Password</Link>
           </div>
 
         </form>

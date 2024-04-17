@@ -17,7 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			user: null,
 			userName: null,
-			randomUser: []
+			randomUser: [],
+			favorites: [],
 
 		},
 		actions: {
@@ -25,7 +26,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -152,6 +152,100 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ randomUser: data.results })
 					})
 					.catch(error => console.log("there was an error fetching random person ", error))
+			},
+			ForgotPassword: async (email) => {
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: email
+					})
+				};
+				const res = await fetch(process.env.BACKEND_URL + "/forgot-password", opts);
+				if (res.status < 200 || res.status >= 300) {
+					throw new Error("User does not exist");
+				}
+				const data = await res.json();
+			},
+			addFavorite: (page) => {
+				if (sessionStorage.getItem("token")) {
+					const token = sessionStorage.getItem('token');
+					const opts = {
+						headers: {
+							Authorization: "Bearer " + token,
+							'Content-Type': 'application/json'
+						},
+						method: "POST",
+						body: JSON.stringify({ page: page }),
+					};
+					// setStore({ favorites: ...getStore.favorites(), page });
+					// use if you make favorites in the back end
+					// fetch(process.env.BACKEND_URL + "/api/favorites", opts)
+					// 	.then((response) => response.json())
+					// 	.then((data) => {
+					// 		if (data.msg == "ok") {
+					// 			f.push(item);
+					// 			setStore({ favorites: f });
+					// 		}
+					// 	})
+					// 	.catch((error) => { console.log(error); });
+				}
+			},
+			removeFavorite: (page) => {
+				if (sessionStorage.getItem("token")) {
+					const token = sessionStorage.getItem('token');
+					const opts = {
+						headers: {
+							Authorization: "Bearer " + token,
+							'Content-Type': 'application/json'
+						},
+						method: "DELETE",
+						body: JSON.stringify({ page: page }),
+					};
+					// use if you make favorites in the back end
+					// fetch(process.env.BACKEND_URL + "/api/deletefav", opts)
+					// 	.then((response) => response.json())
+					// 	.then((data) => {
+					// 		if (data.msg == "ok") {
+					// 			f.forEach((el, i) => {
+					// 				if (el.id === item.id && el.sims_card === item.sims_card) {
+					// 					f.splice(i, 1);
+					// 				}
+					// 			});
+					// 			setStore({ favorites: f });
+					// 		}
+					// 	})
+					// 	.catch((error) => { console.log(error); });
+
+					// getStore().favorites.forEach((fav, i) => {
+					// 	if (fav === page) {
+					// 		fav.splice(i, 1);
+					// 	}
+					// });
+					// setStore({ favorites: f });
+				}
+			},
+			updatePassword: async (token, password) => {
+				console.log(token, password);
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": "Bearer " + token
+					},
+					body: JSON.stringify({
+						password: password,
+					}),
+				};
+				const res = await fetch(process.env.BACKEND_URL + "/api/recover-password", opts);
+				if (res.status < 200 || res.status >= 300) {
+					throw new Error("There was an error changing password");
+				}
+				const data = await res.json();
+
+				return true;
 			}
 		}
 
