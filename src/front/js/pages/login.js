@@ -35,7 +35,7 @@ export const Login = () => {
           </div>
           <div className="Parentbtn">
             <input type="submit" name="submit" value="login" className="btnlogin btn bg-white text-dark" onClick={handleLogin} />
-            <Link to={"/forgotpassword"}>Forgot Password</Link>
+            <Link className="btn" to={"/forgotpassword"}>Forgot Password</Link>
           </div>
 
         </form>

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import logo from "../../img/logo.png";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context)
@@ -8,7 +9,7 @@ export const Navbar = () => {
 
 		<nav className="navbar navbar-expand-lg bg-body-tertiary purple ">
 			<div className="container-fluid">
-				<a className="navbar-brand" href="#">Color Me</a>
+				<a className="navbar-brand" href="#"><img src={logo} height="45px" /></a>
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">

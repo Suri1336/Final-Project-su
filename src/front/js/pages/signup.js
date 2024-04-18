@@ -21,7 +21,7 @@ export const Signup = () => {
     <div className="text-white signup">
       <div className="text-white rounded">
         {/* form starts here do css in signup */}
-        <form className="Application">
+        <form className="Application pb-5">
           <h1 className="signuphead">Sign Up </h1>
           <div className="inputContainer">
             <input type="text" name="Username" placeholder="Username" className="input" onChange={(e) => setUserName(e.target.value)} value={UserName} />

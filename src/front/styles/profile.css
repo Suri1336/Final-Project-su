@@ -10,10 +10,11 @@
     border: white;
     border-radius: 12.5px;
 }
-.profilebtn{
+
+.profilebtn {
     width: fit-content;
     display: flex;
-    justify-content:space-around;
-    margin-left:1200px;
-  
+    justify-content: space-around;
+    margin-left: 1200px;
+    margin-bottom: 10px;
 }

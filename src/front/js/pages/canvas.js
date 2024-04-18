@@ -21,7 +21,6 @@ export const Canvas = () => {
   return (
     <div>
       <ColoringPage1 img={sheet.pageLink} />
-      <div> {sheet.name} </div>
     </div>
   )
 }
