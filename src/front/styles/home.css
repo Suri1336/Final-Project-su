@@ -20,7 +20,7 @@ height: auto;
 }
 
 .purple {
-    background-color: #e6cbff;
+    background-color: #ebd8fd;
 }
 
 .navbar {
@@ -55,4 +55,7 @@ margin-bottom: 500rem;
     display: block;
     height: 16em;
     width: 100%;
+}
+.canvastop{
+    margin-top: 70px;
 }

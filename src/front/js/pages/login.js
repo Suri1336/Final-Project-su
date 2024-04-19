@@ -15,7 +15,7 @@ export const Login = () => {
     actions.login(UserName, password)
   };
   if (store.token && store.token !== "" && store.token !== undefined) {
-    navigate("/profile")
+    navigate("/sheets")
   }
   {/*rendering/html for login starts here */ }
   return (
@@ -34,8 +34,8 @@ export const Login = () => {
             <label className="label">Password</label>
           </div>
           <div className="Parentbtn">
-            <input type="submit" name="submit" value="login" className="btnlogin btn bg-white text-dark" onClick={handleLogin} />
-            <Link className="btn" to={"/forgotpassword"}>Forgot Password</Link>
+            <input type="submit" name="submit" value="login" className=" m-1 btnlogin btn bg-white text-dark" onClick={handleLogin} />
+            <Link className="btnlogin btn bg-white text-dark m-1 " to={"/forgotpassword"}>Forgot Password</Link>
           </div>
 
         </form>

@@ -34,8 +34,11 @@ export const Sheets = () => {
             <div className="card-body">
               <Link to={"/canvas/" + sheet.id}>lets color</Link>
               <button onClick={() => {
-                actions.addFav(sheet.pageLink);
-
+                if (store.fav.includes(sheet.pageLink)) {
+                  actions.deleteFav(sheet.pageLink); // Remove from favorites
+                } else {
+                  actions.addFav(sheet.pageLink); // Add to favorites
+                }
               }}>
                 {store.fav.includes(sheet.pageLink) ? "🤍" : "♡"}
               </button>
