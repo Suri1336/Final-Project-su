@@ -111,7 +111,8 @@ import "../../styles/profile.css";
 import { Link } from "react-router-dom";
 import pic from "../../img/Kawaii5.jpg"; 
 import pic2 from  "../../img/kawaiiUrl2.jpeg";
-import pic3 from  "../../img/kawaii4.jpg"
+import pic3 from  "../../img/kawaii4.jpg";
+import coloredpic from "../../img/coloring_image.png";
 
 export const Profile = () => {
     const { store, actions } = useContext(Context);
@@ -134,7 +135,9 @@ export const Profile = () => {
             <div className="container pt-5">
                 <div className="row mt-5 align-item-center justify-content-between">
                     <img src="https://xsgames.co/randomusers/avatar.php?g=female" className="rounded-circle col-4 m-3 p-2" alt="pic" />
-                    <div className="profile col-6 m-4 p-3">What you have colored</div>
+                    <div className="profile col-6 m-5 p-3">What you have colored
+                    <img className="proimgcolored m-5  " src={coloredpic}/></div>
+
                 </div>
                 <div className="row mt-5 align-item-center justify-content-between">
                     <div className="profile col-4 m-4 p-3">

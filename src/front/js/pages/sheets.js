@@ -32,8 +32,8 @@ export const Sheets = () => {
           <div key={index} className="card cardSheets col">
             <img src={sheet.pageLink} className="card-img-top" height=" 200px" width="150px" alt="hi" />
             <div className="card-body">
-              <Link to={"/canvas/" + sheet.id}>lets color</Link>
-              <button onClick={() => {
+              <Link to={"/canvas/" + sheet.id} className="btn purple m-2">lets color</Link>
+              <button className="btn purple p-1" onClick={() => {
                 if (store.fav.includes(sheet.pageLink)) {
                   actions.deleteFav(sheet.pageLink); // Remove from favorites
                 } else {
